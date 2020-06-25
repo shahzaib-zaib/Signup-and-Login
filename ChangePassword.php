@@ -66,6 +66,8 @@
                 if ($userPswd == $Old_pswd) 
                 {
                     if($New_pswd == $Confirm_pswd){
+                        $update_query = "update signup set Password = '$New_pswd' where Id = '$userid'";
+                        $run = mysqli_query($con, $update_query);
                         echo "<script>
                                 alert('Password Chnaged')
                             </script>"
