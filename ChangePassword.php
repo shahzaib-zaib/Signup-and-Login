@@ -50,7 +50,9 @@
         session_start();
         if (isset($_POST['login'])) {
             if (isset($_SESSION['useremail'])) {
-                
+                $email = $_SESSION['useremail'];
+                $fetch_query = "select * from signup where Email = '$email'";
+                $execute = mysqli_query($con, $fetch_query);
             }
         }
 
