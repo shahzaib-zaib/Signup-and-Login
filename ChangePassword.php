@@ -48,11 +48,36 @@
 
         $con = mysqli_connect('localhost', 'root', '', 'registerform');
         session_start();
-        if (isset($_POST['login'])) {
-            if (isset($_SESSION['useremail'])) {
+        if (isset($_POST['login'])) 
+        {
+            if (isset($_SESSION['useremail'])) 
+            {
                 $email = $_SESSION['useremail'];
                 $fetch_query = "select * from signup where Email = '$email'";
                 $execute = mysqli_query($con, $fetch_query);
+                $data = mysqli_fetch_assoc($execute);
+                $userid= $data['Id'];
+                $userpswd= $data['Password'];
+
+                $old_pswd = $_POST['OPswd'];
+                $New_pswd = $_POST['NPswd'];
+                $Confirm_pswd = $_POST['CPswd'];
+
+                if ($userPswd == $Old_pswd) 
+                {
+                    if($New_pswd == $Confirm_pswd){
+                        echo "<script>
+                                alert('Password Chnaged')
+                            </script>"
+                    }
+                    else 
+                    {
+                        echo "<script>
+                                alert('New and Confirm Password must be same')
+                            </script>"
+                        
+                    } 
+                }
             }
         }
 
